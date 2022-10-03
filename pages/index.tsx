@@ -1,33 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
-  const [currentTarget, setCurrentTarget] = useState<HTMLElement | null>(null);
-  // const [audio, setAudio] = useState<HTMLElement | null>(null);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [clickedId, setClickedId] = useState('');
 
-  useEffect(() => {
-    console.log(currentTarget);
-    if (!currentTarget) {
-      return;
-    }
-
-    const audioUrl = currentTarget.dataset.audioUrl;
-    currentTarget.classList.toggle('play');
-    const audio = new Audio(audioUrl);
-    audio.addEventListener(
-      'ended',
-      () => {
-        currentTarget.classList.toggle('play');
-        setCurrentTarget(null);
-      },
-      {
-        once: true,
-      }
-    );
-    audio.play();
-
-    // return () => {};
-  }, [currentTarget]);
+  const handlePauseEvent = useCallback(() => {
+    console.log('pause handler did run');
+    setClickedId('');
+  }, []);
 
   const exampleSentences = [
     {
@@ -53,9 +34,36 @@ const Home: NextPage = () => {
     },
   ];
 
-  function togglePlay(e: React.MouseEvent<HTMLElement>) {
-    setCurrentTarget(e.currentTarget);
-  }
+  useEffect(() => {
+    if (!clickedId) return;
+    console.log('clickedId changed and its not empty string' + Date.now());
+
+    // stop the older audio
+    audio ? audio.pause() : '';
+    setAudio(null);
+
+    const sentence = exampleSentences.find(
+      (sentence) => clickedId === sentence.id
+    );
+    const audioElement = new Audio(sentence.audioUrl);
+    audioElement.addEventListener('pause', handlePauseEvent);
+    setAudio(audioElement);
+    audioElement.play();
+
+    return () => {
+      audioElement.removeEventListener('pause', handlePauseEvent);
+    };
+  }, [clickedId]);
+
+  const handlePlayClick = (exampleId: string) => {
+    // if same button clicked pause the playing audio and reset the state
+    if (exampleId === clickedId) {
+      audio ? audio.pause() : '';
+      setAudio(null);
+      return setClickedId('');
+    }
+    return setClickedId(exampleId);
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -67,9 +75,8 @@ const Home: NextPage = () => {
                 <li key={example.id}>
                   {example.sentence}
                   <button
-                    data-id={example.id}
-                    data-audio-url={example.audioUrl}
-                    onClick={togglePlay}
+                    className={`${clickedId === example.id ? 'play' : ''}`}
+                    onClick={() => handlePlayClick(example.id)}
                   >
                     <span className="material-symbols-outlined icon-volume-up text-gray-500 ">
                       volume_up
