@@ -1,21 +1,33 @@
 import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
-import Head from 'next/head';
 
 const Home: NextPage = () => {
-  const [audioUrl, setAudioUrl] = useState('');
+  const [currentTarget, setCurrentTarget] = useState<HTMLElement | null>(null);
+  // const [audio, setAudio] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (!audioUrl) {
+    console.log(currentTarget);
+    if (!currentTarget) {
       return;
     }
+
+    const audioUrl = currentTarget.dataset.audioUrl;
+    currentTarget.classList.toggle('play');
     const audio = new Audio(audioUrl);
+    audio.addEventListener(
+      'ended',
+      () => {
+        currentTarget.classList.toggle('play');
+        setCurrentTarget(null);
+      },
+      {
+        once: true,
+      }
+    );
     audio.play();
-    return () => {
-      // on destroy, pause the existing video
-      audio.pause();
-    };
-  }, [audioUrl]);
+
+    // return () => {};
+  }, [currentTarget]);
 
   const exampleSentences = [
     {
@@ -41,29 +53,28 @@ const Home: NextPage = () => {
     },
   ];
 
-  function togglePlay(audioUrlEvent: string) {
-    if (audioUrlEvent === audioUrl) {
-      setAudioUrl('');
-    } else {
-      setAudioUrl(audioUrlEvent);
-    }
+  function togglePlay(e: React.MouseEvent<HTMLElement>) {
+    setCurrentTarget(e.currentTarget);
   }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.svg" />
-      </Head>
-
       <main className="">
         <div className="">
           <ul className="list-decimal">
             {exampleSentences.map((example, _i) => {
               return (
                 <li key={example.id}>
-                  {example.sentence}{' '}
-                  <span onClick={() => togglePlay(example.audioUrl)}>play</span>
+                  {example.sentence}
+                  <button
+                    data-id={example.id}
+                    data-audio-url={example.audioUrl}
+                    onClick={togglePlay}
+                  >
+                    <span className="material-symbols-outlined icon-volume-up text-gray-500 ">
+                      volume_up
+                    </span>
+                  </button>
                 </li>
               );
             })}
