@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   const [sentences, setSentences] = useState<any>(null);
 
   const BACKEND_URL =
-    'https://wvqpyejigd.execute-api.us-west-2.amazonaws.com/prod/';
+    'https://55dijtg0pg.execute-api.us-west-2.amazonaws.com/prod/';
 
   useEffect(() => {
     if (!word) return;
@@ -95,7 +95,7 @@ const Home: NextPage = () => {
                     </li>
                   );
                 })
-              : 'loading'}
+              : 'Loading...'}
           </ul>
         </div>
       </main>
