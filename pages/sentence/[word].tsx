@@ -27,7 +27,7 @@ const Home: NextPage = () => {
 
         const sentences = await response.json();
         console.log(sentences);
-        setSentences(sentences.Items);
+        setSentences(sentences);
       };
       getData();
     } catch (error) {
@@ -53,7 +53,9 @@ const Home: NextPage = () => {
     audio ? audio.pause() : '';
     setAudio(null);
 
-    const sentence = sentences.find((sentence) => clickedId === sentence.id);
+    const sentence = sentences.find(
+      (sentence) => clickedId === sentence.sortKey
+    );
     const audioElement = new Audio(sentence.audioUrl);
     audioElement.addEventListener('pause', handlePauseEvent);
     setAudio(audioElement);
@@ -82,11 +84,17 @@ const Home: NextPage = () => {
             {sentences
               ? sentences.map((sentence, _i) => {
                   return (
-                    <li key={sentence.id}>
-                      {sentence.sentence}
+                    <li key={sentence.sortKey}>
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: sentence.styledSentence,
+                        }}
+                      ></span>
                       <button
-                        className={`${clickedId === sentence.id ? 'play' : ''}`}
-                        onClick={() => handlePlayClick(sentence.id)}
+                        className={`${
+                          clickedId === sentence.sortKey ? 'play' : ''
+                        }`}
+                        onClick={() => handlePlayClick(sentence.sortKey)}
                       >
                         <span className="material-symbols-outlined icon-volume-up text-gray-500 ">
                           volume_up
