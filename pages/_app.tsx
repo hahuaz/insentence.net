@@ -6,9 +6,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>English sentences </title>
-        ;
-        <link rel="icon" href="/favicon.svg" />
+        <title>insentence.net | Practice English</title>
+        <meta
+          content="Practice and improve your English with thousands of example sentences with pronunciation."
+          name="description"
+        ></meta>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />
     </>
