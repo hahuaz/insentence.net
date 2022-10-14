@@ -22,7 +22,7 @@ const TextRotator = () => {
       const letters = word.querySelectorAll('.letter');
       lettersPerWord.push(letters);
     });
-    console.log('lettersPerWord', lettersPerWord);
+    // console.log('lettersPerWord', lettersPerWord);
 
     let currentWord = 0;
     function changeWord() {
@@ -54,7 +54,7 @@ const TextRotator = () => {
     };
   });
 
-  const words = ['FREE.', 'ACCESSIBLE.', 'WORTHWHILE.'];
+  const words = ['FREE.', 'EFFECTIVE.', 'ACCESSIBLE.'];
   const splittedWords: Array<any> = [];
 
   // split letters
@@ -68,10 +68,11 @@ const TextRotator = () => {
 
     const word = (
       <span
-        className={classNames({
-          word: true,
+        className={classNames('word opacity-0 absolute', {
           ['!opacity-100']: wordIndex === 0,
-          ['text-red-500']: true,
+          ['text-blue-bold']: wordIndex === 0,
+          ['text-yellow-bold']: wordIndex === 1,
+          ['text-orange-bold']: wordIndex === 2,
         })}
       >
         {letters.map((letterSpan) => letterSpan)}
@@ -83,9 +84,9 @@ const TextRotator = () => {
   console.log(splittedWords);
 
   return (
-    <div className="flex">
-      <p>Education should be</p>
-      <p className="ml-1">{splittedWords.map((e) => e)}</p>
+    <div>
+      <p className="text-5xl">Education should be</p>
+      <p className="text-5xl">{splittedWords.map((e) => e)}</p>
     </div>
   );
 };

@@ -2,12 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-button.play .icon-volume-up {
-  color: orange !important;
+@layer base {
+  @font-face {
+    font-family: Comfortaa;
+    src: url(/Comfortaa-VariableFont_wght) format('truetype');
+  }
 }
-body {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
+
+:root {
+  --black_light: theme('colors.black_light');
+  --gray: theme('colors.gray');
+  --yellow: theme('colors.yellow');
+  --blue: theme('colors.blue');
+  --orange: theme('colors.orange');
 }
 
 /* .text {
@@ -21,17 +28,16 @@ body {
   font-size: 40px;
 } */
 
-p {
+/* p {
   display: inline-block;
   vertical-align: top;
   margin: 0;
-}
+} */
 
-.word {
+/* .word {
   position: absolute;
-  width: 220px;
   opacity: 0;
-}
+} */
 
 .letter {
   display: inline-block;

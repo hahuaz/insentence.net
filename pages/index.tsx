@@ -11,12 +11,31 @@ const TextRotatorWithNoSSR = dynamic(
 const Home: NextPage = () => {
   return (
     <>
-      <TextRotatorWithNoSSR />
-      <div className="flex min-h-screen flex-col items-center justify-center py-2">
-        <main className="">
-          <h1>Welcome to insentence.net</h1>
-        </main>
-      </div>
+      <main className="max-w-screen-xl mx-auto">
+        <div className="flex justify-around">
+          <div className="max-w-screen-sm space-y-3">
+            <h1 className="text-4xl ">
+              <span className="text-black font-display font-medium">
+                insentence.net
+              </span>{' '}
+              <span className="text-blue">/</span>{' '}
+              <span className="font-serif italic font-light text-2xl text-gray ">
+                Improve Your English!
+              </span>
+            </h1>
+            <div className="text-xl font-light ">
+              <p>Most effective ...</p>
+              <p>
+                We provide top notch pronunciation for every sentence so you can
+                read, listen and repeat.
+              </p>
+            </div>
+          </div>
+          <div>
+            <TextRotatorWithNoSSR />
+          </div>
+        </div>
+      </main>
     </>
   );
 };
