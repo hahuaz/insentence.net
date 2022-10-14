@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import classNames from 'classnames';
 
 function animateLetterOut(cw, i) {
   setTimeout(function () {
@@ -53,12 +54,11 @@ const TextRotator = () => {
     };
   });
 
-  const words = ['ABC', 'DEF', 'GLM'];
+  const words = ['FREE.', 'ACCESSIBLE.', 'WORTHWHILE.'];
   const splittedWords: Array<any> = [];
 
   // split letters
-  let isItFirstWord = true;
-  words.forEach((wordContent) => {
+  words.forEach((wordContent, wordIndex) => {
     // create letters span from word
     const letters = [];
     for (let i = 0; i < wordContent.length; i++) {
@@ -67,20 +67,25 @@ const TextRotator = () => {
     }
 
     const word = (
-      <span className="word" style={isItFirstWord ? { opacity: 1 } : {}}>
+      <span
+        className={classNames({
+          word: true,
+          ['!opacity-100']: wordIndex === 0,
+          ['text-red-500']: true,
+        })}
+      >
         {letters.map((letterSpan) => letterSpan)}
       </span>
     );
-    isItFirstWord = false;
 
     splittedWords.push(word);
   });
   console.log(splittedWords);
 
   return (
-    <div className="text">
-      <p>I Love</p>
-      <p>{splittedWords.map((e) => e)}</p>
+    <div className="flex">
+      <p>Education should be</p>
+      <p className="ml-1">{splittedWords.map((e) => e)}</p>
     </div>
   );
 };
