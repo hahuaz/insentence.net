@@ -3,20 +3,24 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>insentence.net | Practice English</title>
+        <title>InSentence.net | Practice English</title>
         <meta
           content="Practice and improve your English with thousands of example sentences with pronunciation."
           name="description"
         ></meta>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
-      <Navbar></Navbar>
-      <Component {...pageProps} />
+      <div className="min-h-screen flex flex-col justify-between">
+        <Navbar />
+        <Component {...pageProps} />
+        <Footer />
+      </div>
     </>
   );
 }

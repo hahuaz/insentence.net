@@ -77,36 +77,41 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <main className="">
-        <div className="">
-          <ul className="list-decimal">
-            {sentences
-              ? sentences.map((sentence, _i) => {
-                  return (
-                    <li key={sentence.sortKey}>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: sentence.styledSentence,
-                        }}
-                      ></span>
-                      <button
-                        className={`${
-                          clickedId === sentence.sortKey ? 'play' : ''
-                        }`}
-                        onClick={() => handlePlayClick(sentence.sortKey)}
-                      >
-                        <span className="material-symbols-outlined icon-volume-up text-gray-500 ">
-                          volume_up
-                        </span>
-                      </button>
-                    </li>
-                  );
-                })
-              : 'Loading...'}
-          </ul>
-        </div>
-      </main>
+    <div className="max-w-screen-md mx-auto w-full mb-auto mt-6">
+      <p className="flex gap-x-1 items-center">
+        <span className="material-symbols-outlined text-3xl mt-1.5 text-black">
+          menu_book
+        </span>
+        <span className="font-display italic font-medium text-blue text-2xl ">
+          &ldquo;{word}&rdquo;
+        </span>
+      </p>
+
+      <ul className="list-decimal list-inside ">
+        {sentences
+          ? sentences.map((sentence, _i) => {
+              return (
+                <li key={sentence.sortKey}>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: sentence.styledSentence,
+                    }}
+                  ></span>
+                  <button
+                    className={`${
+                      clickedId === sentence.sortKey ? 'play' : ''
+                    }`}
+                    onClick={() => handlePlayClick(sentence.sortKey)}
+                  >
+                    <span className="material-symbols-outlined icon-volume-up text-gray-500 ">
+                      volume_up
+                    </span>
+                  </button>
+                </li>
+              );
+            })
+          : 'Loading...'}
+      </ul>
     </div>
   );
 };

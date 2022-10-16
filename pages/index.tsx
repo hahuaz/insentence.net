@@ -11,7 +11,7 @@ const TextRotatorWithNoSSR = dynamic(
 const Home: NextPage = () => {
   return (
     <>
-      <main className="max-w-screen-xl mx-auto">
+      <main className="max-w-screen-xl mx-auto ">
         <div className="landing-hero max-w-screen-md mx-auto space-y-3 min-h-[400px] rounded-xl">
           <h1 className="text-4xl ">
             <span className="text-black font-display font-medium">
@@ -26,15 +26,14 @@ const Home: NextPage = () => {
             {/* <p>Most effective ...</p> */}
             <li>Created for learners by learner.</li>
             <li>
-              Every sentence has top notch pronunciation so you can read, listen
-              and repeat.
+              Every sentence has pronunciation so you can read, listen and
+              repeat.
             </li>
             <li>
               <TextRotatorWithNoSSR />
             </li>
           </ul>
         </div>
-        <div className="h-[1500px]">create scrollbacr</div>
       </main>
     </>
   );

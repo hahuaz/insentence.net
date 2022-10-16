@@ -41,7 +41,6 @@ const Home: NextPage = () => {
     'https://55dijtg0pg.execute-api.us-west-2.amazonaws.com/prod/';
 
   useEffect(() => {
-    console.log('letter', letter);
     if (!letter) return;
     const controller = new AbortController();
     try {
@@ -67,23 +66,28 @@ const Home: NextPage = () => {
   }, [letter]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="max-w-screen-md mx-auto mb-auto">
+      <ul className="flex gap-2 mt-4 mb-6">
+        {alphabet.map((el) => {
+          return (
+            <li
+              className={`px-1 border-b-4  ${
+                el === letter ? 'border-orange' : 'border-transparent'
+              }`}
+              key={el}
+            >
+              <Link href={`/letter/${el}`}>
+                <a>{el.toUpperCase()}</a>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
       <div>
-        <ul className="flex gap-4">
-          {alphabet.map((letter) => {
-            return (
-              <li className="cursor-pointer" key={letter}>
-                <Link href={`/letter/${letter}`}>{letter.toUpperCase()}</Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div>
-        <ul>
+        <ul className="list-decimal list-inside">
           {wordList.map((word, i) => {
             return (
-              <li key={i} className="list-disc text-blue-500">
+              <li key={i} className=" text-blue-500">
                 <Link href={`/sentence/${word.sortKey}`}>{word.sortKey}</Link>
               </li>
             );
