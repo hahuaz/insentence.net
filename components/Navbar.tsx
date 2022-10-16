@@ -7,11 +7,12 @@ function Navbar() {
 
   return (
     <div
-      className="max-w-screen-md mx-auto rounded-lg mt-12 mb-4 px-3 py-4 bg-stone-100 "
+      className="max-w-screen-md mx-auto rounded-lg my-8 px-3 py-4 bg-stone-100 "
       style={{ boxShadow: 'rgb(0 0 0 / 30%) 0px 0px 30px -1px' }}
     >
       <div className="flex justify-between items-center">
         <div>LOGO</div>
+
         <div
           className={classNames(
             'flex items-center h-10 rounded-xl bg-white pl-2 ',
@@ -39,10 +40,11 @@ function Navbar() {
             onBlur={() => setIsFocused(false)}
           />
         </div>
+        <span></span>
         <div>
           <ul className="flex gap-5">
             <li>LETTERS</li>
-            <li>WORDS</li>
+            <li>RANDOM</li>
           </ul>
         </div>
       </div>

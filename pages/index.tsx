@@ -12,28 +12,27 @@ const Home: NextPage = () => {
   return (
     <>
       <main className="max-w-screen-xl mx-auto">
-        <div className="flex justify-around">
-          <div className="max-w-screen-sm space-y-3">
-            <h1 className="text-4xl ">
-              <span className="text-black font-display font-medium">
-                insentence.net
-              </span>{' '}
-              <span className="text-blue">/</span>{' '}
-              <span className="font-serif italic font-light text-2xl text-gray ">
-                Improve Your English!
-              </span>
-            </h1>
-            <div className="text-xl font-light ">
-              <p>Most effective ...</p>
-              <p>
-                We provide top notch pronunciation for every sentence so you can
-                read, listen and repeat.
-              </p>
-            </div>
-          </div>
-          <div>
-            <TextRotatorWithNoSSR />
-          </div>
+        <div className="landing-hero max-w-screen-md mx-auto space-y-3 min-h-[400px] rounded-xl">
+          <h1 className="text-4xl ">
+            <span className="text-black font-display font-medium">
+              insentence.net
+            </span>{' '}
+            <span className="text-blue">/</span>{' '}
+            <span className="font-serif italic font-light text-2xl text-gray ">
+              Improve Your English!
+            </span>
+          </h1>
+          <ul className="text-lg font-light list-disc list-inside pl-4 marker:text-black">
+            {/* <p>Most effective ...</p> */}
+            <li>Created for learners by learner.</li>
+            <li>
+              Every sentence has top notch pronunciation so you can read, listen
+              and repeat.
+            </li>
+            <li>
+              <TextRotatorWithNoSSR />
+            </li>
+          </ul>
         </div>
       </main>
     </>

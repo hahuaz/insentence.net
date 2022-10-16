@@ -17,6 +17,19 @@
   --orange: theme('colors.orange');
 }
 
+/* index */
+.landing-hero {
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 40%,
+      rgba(285, 255, 255, 0)
+    ),
+    url('/red-apples.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+}
+
 /* .text {
   position: absolute;
   width: 450px;

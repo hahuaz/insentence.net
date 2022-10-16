@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 function animateLetterOut(cw, i) {
   setTimeout(function () {
-    cw[i].className = 'letter out';
+    cw[i].className = 'letter out ';
   }, i * 80);
 }
 
@@ -54,7 +54,7 @@ const TextRotator = () => {
     };
   });
 
-  const words = ['FREE.', 'EFFECTIVE.', 'ACCESSIBLE.'];
+  const words = ['free.', 'effective.', 'accessible.'];
   const splittedWords: Array<any> = [];
 
   // split letters
@@ -62,17 +62,18 @@ const TextRotator = () => {
     // create letters span from word
     const letters = [];
     for (let i = 0; i < wordContent.length; i++) {
-      const letter = <span className="letter">{wordContent.charAt(i)}</span>;
+      const letter = <span className="letter ">{wordContent.charAt(i)}</span>;
       letters.push(letter);
     }
 
     const word = (
       <span
-        className={classNames('word opacity-0 absolute', {
+        className={classNames('word opacity-0 absolute font-bold  pl-1 ', {
           ['!opacity-100']: wordIndex === 0,
-          ['text-blue-bold']: wordIndex === 0,
-          ['text-yellow-bold']: wordIndex === 1,
-          ['text-orange-bold']: wordIndex === 2,
+
+          // ['text-blue-bold']: wordIndex === 0,
+          // ['text-yellow-bold']: wordIndex === 1,
+          // ['text-orange-bold']: wordIndex === 2,
         })}
       >
         {letters.map((letterSpan) => letterSpan)}
@@ -81,13 +82,12 @@ const TextRotator = () => {
 
     splittedWords.push(word);
   });
-  console.log(splittedWords);
 
   return (
-    <div>
-      <p className="text-5xl">Education should be</p>
-      <p className="text-5xl">{splittedWords.map((e) => e)}</p>
-    </div>
+    <span className="">
+      Education should be {/* TODO add bg-color to rotator */}
+      <span className="">{splittedWords.map((e) => e)}</span>
+    </span>
   );
 };
 
