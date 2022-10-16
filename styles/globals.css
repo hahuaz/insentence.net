@@ -5,16 +5,16 @@
 @layer base {
   @font-face {
     font-family: Comfortaa;
-    src: url(/Comfortaa-VariableFont_wght) format('truetype');
+    src: url('/Comfortaa-VariableFont_wght.ttf') format('truetype');
   }
 }
 
 :root {
-  --black_light: theme('colors.black_light');
-  --gray: theme('colors.gray');
-  --yellow: theme('colors.yellow');
-  --blue: theme('colors.blue');
-  --orange: theme('colors.orange');
+  --black_light: theme('colors.cblack_light');
+  --gray: theme('colors.cgray');
+  --yellow: theme('colors.cyellow');
+  --blue: theme('colors.cblue');
+  --orange: theme('colors.corange');
 }
 
 /* index */

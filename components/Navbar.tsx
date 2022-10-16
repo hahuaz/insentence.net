@@ -25,11 +25,14 @@ function Navbar() {
               </a>
             </Link>
           </div>
-
-          <div
-            className={cs('flex items-center h-10 rounded-xl bg-white pl-2 ', {
-              ['border-2']: isFocused,
-            })}
+          {/* TODO activate search bar after implementing enough word into db */}
+          {/* <div
+            className={cs(
+              'flex items-center h-10 rounded-xl bg-white pl-2 border-2 border-transparent ',
+              {
+                ['border-black']: isFocused,
+              }
+            )}
             style={{
               boxShadow:
                 'rgb(65 65 65 / 12%) 0px 3px 10px 1px, rgb(65 65 65 / 12%) 0px 3px 10px 1px',
@@ -55,21 +58,20 @@ function Navbar() {
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
             />
-          </div>
-          <span></span>
+          </div> */}
           <div>
-            <ul className="flex text-sm font-display font-medium  ">
+            <ul className="flex text-sm font-display font-semibold  ">
               <Link href="/letter">
                 <a className="py-1.5 px-3.5 rounded-2xl hover:bg-zinc-300 ">
                   Letters
                 </a>
               </Link>
               {/* TODO implement random */}
-              <Link href="/">
+              {/* <Link href="/">
                 <a className="py-1.5 px-3.5 rounded-3xl hover:bg-zinc-300">
                   Random
                 </a>
-              </Link>
+              </Link> */}
             </ul>
           </div>
         </div>

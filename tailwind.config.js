@@ -12,20 +12,20 @@ module.exports = {
         serif: ['ui-serif', 'Georgia'],
       },
       colors: {
-        ['gray']: '#4a4a4a',
+        ['cgray']: '#4a4a4a',
 
-        ['black_light']: '#323232',
+        ['cblack_light']: '#323232',
 
-        ['yellow']: '#ffdb85',
-        ['yellow-bold']: '#ffbe0b',
+        ['cyellow']: '#ffdb85',
+        ['cyellow-bold']: '#ffbe0b',
 
-        ['orange']: '#ff8673',
-        ['orange-bold']: '#fb5607',
+        ['corange']: '#ff8673',
+        ['corange-bold']: '#fb5607',
 
-        ['blue']: '#4d99ff',
-        ['blue-bold']: '#3a0ca3',
+        ['cblue']: '#4d99ff',
+        ['cblue-bold']: '#3a0ca3',
 
-        ['purple-bold']: '#7209b7',
+        ['cpurple-bold']: '#7209b7',
       },
     },
   },

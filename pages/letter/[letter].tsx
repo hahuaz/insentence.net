@@ -72,7 +72,7 @@ const Home: NextPage = () => {
           return (
             <li
               className={`px-1 border-b-4  ${
-                el === letter ? 'border-orange' : 'border-transparent'
+                el === letter ? 'border-corange' : 'border-transparent'
               }`}
               key={el}
             >

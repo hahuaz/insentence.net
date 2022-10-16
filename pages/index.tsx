@@ -17,8 +17,8 @@ const Home: NextPage = () => {
             <span className="text-black font-display font-medium">
               insentence.net
             </span>{' '}
-            <span className="text-blue">/</span>{' '}
-            <span className="font-serif italic font-light text-2xl text-gray ">
+            <span className="text-cblue">/</span>{' '}
+            <span className="font-serif italic font-light text-2xl text-cgray ">
               Improve Your English!
             </span>
           </h1>

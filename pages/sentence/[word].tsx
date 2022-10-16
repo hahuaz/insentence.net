@@ -1,11 +1,19 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
+
+import { default as cs } from 'classnames';
 
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   const router = useRouter();
   const { word } = router.query;
+
+  <Head>
+    <title>InSentence.net | Practice English</title>
+    <meta content={`Usage of ${word} in sentence.`} name="description"></meta>
+  </Head>;
 
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [clickedId, setClickedId] = useState('');
@@ -77,36 +85,54 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="max-w-screen-md mx-auto w-full mb-auto mt-6">
-      <p className="flex gap-x-1 items-center">
-        <span className="material-symbols-outlined text-3xl mt-1.5 text-black">
+    <div className="max-w-screen-md mx-auto w-full mb-auto mt-6 bg-zinc-100 px-4 py-2 rounded-2xl">
+      <p className="flex gap-x-1 items-center ml-3">
+        <span className="material-symbols-outlined text-2xl mt-1 text-black">
           menu_book
         </span>
-        <span className="font-display italic font-medium text-blue text-2xl ">
-          &ldquo;{word}&rdquo;
+        <span className="text-cblue text-xl ml-1 italic ">
+          &ldquo;
+          <span className="font-semibold font-display ">{word}</span>
+          &rdquo;
         </span>
       </p>
 
-      <ul className="list-decimal list-inside ">
+      <ul className=" list-decimal list-inside my-2 ">
         {sentences
           ? sentences.map((sentence, _i) => {
               return (
-                <li key={sentence.sortKey}>
+                <li
+                  key={sentence.sortKey}
+                  className="my-3 px-3 pt-3 pb-2  rounded-2xl shadow-md bg-white"
+                >
                   <span
                     dangerouslySetInnerHTML={{
                       __html: sentence.styledSentence,
                     }}
                   ></span>
-                  <button
-                    className={`${
-                      clickedId === sentence.sortKey ? 'play' : ''
-                    }`}
-                    onClick={() => handlePlayClick(sentence.sortKey)}
-                  >
-                    <span className="material-symbols-outlined icon-volume-up text-gray-500 ">
-                      volume_up
-                    </span>
-                  </button>
+                  <div className="ml-4 space-x-2 leading-none  ">
+                    <button
+                      onClick={() =>
+                        navigator.clipboard.writeText(sentence.sentence)
+                      }
+                    >
+                      <span className="material-symbols-outlined text-xl font-thin text-cgray active:text-corange ">
+                        content_copy
+                      </span>
+                    </button>
+                    <button onClick={() => handlePlayClick(sentence.sortKey)}>
+                      <span
+                        className={cs(
+                          'material-symbols-outlined icon-volume-up text-xl font-thin ',
+                          {
+                            ['text-corange']: clickedId === sentence.sortKey,
+                          }
+                        )}
+                      >
+                        volume_up
+                      </span>
+                    </button>
+                  </div>
                 </li>
               );
             })
