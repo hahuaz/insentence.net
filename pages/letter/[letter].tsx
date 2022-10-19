@@ -32,7 +32,7 @@ const alphabet = [
   'z',
 ];
 const Home: NextPage = () => {
-  const [wordList, setWordList] = useState([]);
+  const [wordList, setWordList] = useState<any[]>([]);
 
   const { query } = useRouter();
   const { letter } = query;

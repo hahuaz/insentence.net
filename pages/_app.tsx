@@ -1,6 +1,8 @@
-import '../styles/globals.css';
+import { useRouter } from 'next/router';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+
+import '../styles/globals.css';
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';

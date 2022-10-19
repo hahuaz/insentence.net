@@ -60,7 +60,7 @@ const TextRotator = () => {
   // split letters
   words.forEach((wordContent, wordIndex) => {
     // create letters span from word
-    const letters = [];
+    const letters: Array<JSX.Element> = [];
     for (let i = 0; i < wordContent.length; i++) {
       const letter = <span className="letter ">{wordContent.charAt(i)}</span>;
       letters.push(letter);

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import type { NextPage } from 'next';
+import Link from 'next/link';
 
 import dynamic from 'next/dynamic';
 
