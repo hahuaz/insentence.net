@@ -8,7 +8,7 @@ import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const { word } = router.query;
+  const { slug: word } = router.query;
 
   <Head>
     <title>InSentence.net | Practice English</title>

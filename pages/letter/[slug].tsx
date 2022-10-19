@@ -35,7 +35,7 @@ const Home: NextPage = () => {
   const [wordList, setWordList] = useState<any[]>([]);
 
   const { query } = useRouter();
-  const { letter } = query;
+  const { slug: letter } = query;
 
   const BACKEND_URL =
     'https://55dijtg0pg.execute-api.us-west-2.amazonaws.com/prod/';
