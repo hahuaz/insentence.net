@@ -64,7 +64,9 @@ const Home: NextPage = () => {
     const sentence = sentences.find(
       (sentence) => clickedId === sentence.sortKey
     );
-    const audioElement = new Audio(sentence.audioUrl);
+    const audioElement = new Audio(
+      `https://cdn.insentence.net/${sentence.sortKey}`
+    );
     audioElement.addEventListener('pause', handlePauseEvent);
     setAudio(audioElement);
     audioElement.play();
