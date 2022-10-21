@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const alphabet = [
   'a',
@@ -36,6 +37,14 @@ const Home: NextPage = () => {
 
   const { query } = useRouter();
   const { slug: letter } = query;
+
+  <Head>
+    <title>InSentence.net | Practice English</title>
+    <meta
+      content={`Example words that starts with letter ${letter}.`}
+      name="description"
+    ></meta>
+  </Head>;
 
   const BACKEND_URL =
     'https://55dijtg0pg.execute-api.us-west-2.amazonaws.com/prod/';
