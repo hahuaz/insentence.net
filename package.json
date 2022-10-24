@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
+    "copy": "xcopy /E /I /Y \"out\" \"../english-sentences-backend/front-build\"",
     "start": "next start"
   },
   "dependencies": {
