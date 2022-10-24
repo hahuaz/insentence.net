@@ -47,7 +47,7 @@ const Home: NextPage = () => {
   </Head>;
 
   const BACKEND_URL =
-    'https://55dijtg0pg.execute-api.us-west-2.amazonaws.com/prod/';
+    'https://0rp9uoaexh.execute-api.us-east-1.amazonaws.com/prod/';
 
   useEffect(() => {
     if (!letter) return;

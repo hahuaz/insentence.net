@@ -61,7 +61,7 @@ function Navbar() {
           </div> */}
           <div>
             <ul className="flex text-sm font-display font-semibold  ">
-              <Link href="/letter">
+              <Link href="/letter/a">
                 <a className="py-1.5 px-3.5 rounded-2xl hover:bg-zinc-300 ">
                   Letters
                 </a>
