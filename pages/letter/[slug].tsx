@@ -32,7 +32,7 @@ const alphabet = [
   'y',
   'z',
 ];
-const Home: NextPage = () => {
+const Letter: NextPage = () => {
   const [wordList, setWordList] = useState<any[]>([]);
 
   const { query } = useRouter();
@@ -107,4 +107,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Letter;

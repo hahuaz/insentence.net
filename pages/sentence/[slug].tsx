@@ -6,7 +6,7 @@ import { default as cs } from 'classnames';
 
 import type { NextPage } from 'next';
 
-const Home: NextPage = () => {
+const Sentence: NextPage = () => {
   const router = useRouter();
   const { slug: word } = router.query;
 
@@ -144,4 +144,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Sentence;
