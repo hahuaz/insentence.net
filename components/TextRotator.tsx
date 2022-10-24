@@ -62,12 +62,17 @@ const TextRotator = () => {
     // create letters span from word
     const letters: Array<JSX.Element> = [];
     for (let i = 0; i < wordContent.length; i++) {
-      const letter = <span className="letter ">{wordContent.charAt(i)}</span>;
+      const letter = (
+        <span className="letter " key={i}>
+          {wordContent.charAt(i)}
+        </span>
+      );
       letters.push(letter);
     }
 
     const word = (
       <span
+        key={wordIndex}
         className={classNames('word opacity-0 absolute font-bold  pl-1 ', {
           ['!opacity-100']: wordIndex === 0,
 
