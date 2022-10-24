@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import Head from 'next/head';
 
 import dynamic from 'next/dynamic';
 
@@ -12,6 +13,14 @@ const TextRotatorWithNoSSR = dynamic(
 const Home: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>InSentence.net | Practice English</title>
+        <meta
+          content="Practice and improve your English with thousands of example sentences with pronunciation."
+          name="description"
+        ></meta>
+        <link rel="icon" href="/favicon.png" />
+      </Head>
       <main className="max-w-screen-xl mx-auto ">
         <div className="landing-hero max-w-screen-md mx-auto space-y-3 min-h-[400px] rounded-xl">
           <h1 className="text-4xl ">

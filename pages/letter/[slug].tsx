@@ -38,14 +38,6 @@ const Letter: NextPage = () => {
   const { query } = useRouter();
   const { slug: letter } = query;
 
-  <Head>
-    <title>InSentence.net | Practice English</title>
-    <meta
-      content={`Example words that starts with letter ${letter}.`}
-      name="description"
-    ></meta>
-  </Head>;
-
   const BACKEND_URL =
     'https://0rp9uoaexh.execute-api.us-east-1.amazonaws.com/prod/';
 
@@ -75,35 +67,44 @@ const Letter: NextPage = () => {
   }, [letter]);
 
   return (
-    <div className="max-w-screen-md mx-auto mb-auto">
-      <ul className="flex gap-2 mt-4 mb-6">
-        {alphabet.map((el) => {
-          return (
-            <li
-              className={`px-1 border-b-4  ${
-                el === letter ? 'border-corange' : 'border-transparent'
-              }`}
-              key={el}
-            >
-              <Link href={`/letter/${el}`}>
-                <a>{el.toUpperCase()}</a>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-      <div>
-        <ul className="list-decimal list-inside">
-          {wordList.map((word, i) => {
+    <>
+      <Head>
+        <title>InSentence.net | Practice English</title>
+        <meta
+          content={`Example words that starts with letter ${letter}.`}
+          name="description"
+        ></meta>
+      </Head>
+      <div className="max-w-screen-md mx-auto mb-auto">
+        <ul className="flex gap-2 mt-4 mb-6">
+          {alphabet.map((el) => {
             return (
-              <li key={i} className=" text-blue-500">
-                <Link href={`/sentence/${word.sortKey}`}>{word.sortKey}</Link>
+              <li
+                className={`px-1 border-b-4  ${
+                  el === letter ? 'border-corange' : 'border-transparent'
+                }`}
+                key={el}
+              >
+                <Link href={`/letter/${el}`}>
+                  <a>{el.toUpperCase()}</a>
+                </Link>
               </li>
             );
           })}
         </ul>
+        <div>
+          <ul className="list-decimal list-inside">
+            {wordList.map((word, i) => {
+              return (
+                <li key={i} className=" text-blue-500">
+                  <Link href={`/sentence/${word.sortKey}`}>{word.sortKey}</Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
