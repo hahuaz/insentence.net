@@ -85,7 +85,9 @@ const Sentence: NextPage = () => {
     <>
       <Head>
         <title>
-          {`${word![0].toUpperCase()}${word!.slice(1)}`} | InSentence.net
+          {word
+            ? `${word[0].toUpperCase()}${word.slice(1)} | InSentence.net`
+            : 'InSentence.net | Practice English'}
         </title>
         <meta
           content={`Examples of ${word} in sentence.`}
