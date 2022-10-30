@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "copy": "xcopy /E /I /Y \"out\" \"../english-sentences-backend/front-build\"",
+    "deploy-s3": "aws s3 cp out s3://prod-insent-storagesitebucket0e9c51b8-8sri040kcn5l --recursive --profile hahuaz-root",
+    "copy-out": "xcopy /E /I /Y \"out\" \"../english-sentences-backend/front-build\"",
     "start": "next start"
   },
   "dependencies": {
