@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Head from 'next/head';
+import classNames from 'classnames';
 
 const alphabet = [
   'a',
@@ -38,8 +39,7 @@ const Letter: NextPage = () => {
   const { query } = useRouter();
   const { slug: letter } = query;
 
-  const BACKEND_URL =
-    'https://0rp9uoaexh.execute-api.us-east-1.amazonaws.com/prod/';
+  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   useEffect(() => {
     if (!letter) return;
@@ -93,15 +93,17 @@ const Letter: NextPage = () => {
           })}
         </ul>
         <div>
-          <ul className="list-decimal list-inside">
+          <div className="grid grid-cols-3 gap-y-6">
             {wordList.map((word, i) => {
               return (
-                <li key={i} className=" text-blue-500">
-                  <Link href={`/sentence/${word.sortKey}`}>{word.sortKey}</Link>
-                </li>
+                <span key={i} className=" text-blue-500 inline-block">
+                  <Link href={`/sentence/${word.sortKey}`}>
+                    {i + 1 + '.' + word.sortKey}
+                  </Link>
+                </span>
               );
             })}
-          </ul>
+          </div>
         </div>
       </div>
     </>

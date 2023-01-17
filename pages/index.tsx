@@ -34,10 +34,12 @@ const Home: NextPage = () => {
           </h1>
           <ul className="text-lg font-light list-disc list-inside pl-4 marker:text-black">
             {/* <p>Most effective ...</p> */}
-            <li>Created for learners by learner.</li>
             <li>
-              Every sentence has pronunciation so you can read, listen and
-              repeat.
+              Designed with the student in mind, this platform offers a unique
+              learning experience.
+            </li>
+            <li>
+              Each word and sentence is accompanied by clear pronunciation.
             </li>
             <li>
               <TextRotatorWithNoSSR />

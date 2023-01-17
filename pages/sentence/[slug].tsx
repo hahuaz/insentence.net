@@ -15,8 +15,7 @@ const Sentence: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [sentences, setSentences] = useState<any>(null);
 
-  const BACKEND_URL =
-    'https://0rp9uoaexh.execute-api.us-east-1.amazonaws.com/prod/';
+  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   useEffect(() => {
     if (!word) return;
