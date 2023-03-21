@@ -2,11 +2,7 @@ import { DynamoDB } from 'aws-sdk';
 
 const { APP_REGION, SENTENCE_TABLE_NAME } = process.env;
 
-const dynamoClientw2 = new DynamoDB.DocumentClient({
-  region: 'us-west-2',
-});
-
-const dynamoCliente1 = new DynamoDB.DocumentClient({
+const dynamodbClient = new DynamoDB.DocumentClient({
   region: APP_REGION,
 });
 
@@ -40,51 +36,9 @@ const alphabet = [
 ];
 
 export async function handler(event: any) {
-  // const { Items } = await dynamoClientw2
-  //   .scan({
-  //     TableName: SENTENCE_TABLE_NAME as string,
-
-  //   })
-  //   .promise();
-
-  // console.log('items', JSON.stringify(Items, null, 2));
-
-  // create modified version
-  // const created = await Promise.all(
-  //   Items!.map(async (i) => {
-  //     i.modifiedAt = Date.now();
-  //     return await dynamoCliente1
-  //       .put({
-  //         TableName: 'PROD-inSent-storagesentenceC4EFF070-KX4UK86Z8G7N',
-  //         Item: i,
-  //       })
-  //       .promise();
-  //   })
-  // );
-
-  // console.log(created);
-
-  // // delete old version
-  // const deleted = await Promise.all(
-  //   Items!.map(async (i) => {
-  //     if (i.partitionKey.includes('WORD#') && !i.sortKey.includes('/')) {
-  //       return await dynamoClient
-  //         .delete({
-  //           TableName: SENTENCE_TABLE_NAME as string,
-  //           Key: {
-  //             partitionKey: i.partitionKey,
-  //             sortKey: i.sortKey,
-  //           },
-  //         })
-  //         .promise();
-  //     }
-  //   })
-  // );
-  // console.log(deleted);
-
   const created = await Promise.all(
     alphabet.map(async (letter) => {
-      const words = await dynamoCliente1
+      const words = await dynamodbClient
         .query({
           TableName: SENTENCE_TABLE_NAME as string,
           ExpressionAttributeNames: {
@@ -112,7 +66,7 @@ export async function handler(event: any) {
 
       await Promise.all(
         modifiedWords!.map(async (word) => {
-          await dynamoCliente1
+          await dynamodbClient
             .update({
               TableName: SENTENCE_TABLE_NAME as string,
 
