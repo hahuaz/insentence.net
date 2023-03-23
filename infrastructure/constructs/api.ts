@@ -41,6 +41,15 @@ export class ApiConstruct extends Construct {
     });
     wordResource.addMethod('GET');
 
+    // catch /search
+    const searchResource = this.api.root.addResource('search', {
+      // removes the burden that we have to declare same integration for every method
+      defaultIntegration: new apigateway.LambdaIntegration(
+        props.sentenceProxyFunction
+      ),
+    });
+    searchResource.addMethod('GET');
+
     // catch /sentence/[proxy]
     this.sentenceProxy = sentenceResource.addProxy({
       defaultIntegration: new apigateway.LambdaIntegration(

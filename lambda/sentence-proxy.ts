@@ -13,6 +13,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const routes = {
   getSentence: 'GET /sentence',
   getWordList: 'GET /word',
+  getSearch: 'GET /search',
 };
 export async function handler(
   event: APIGatewayProxyEvent
@@ -26,6 +27,43 @@ export async function handler(
   // return early if route is not found
   if (!Object.values(routes).includes(routeKey))
     return createResponse(200, 'invalid route');
+
+  if (routeKey === routes.getSearch) {
+    const { q } = queryStringParameters || {};
+    if (!q) return createResponse(400);
+
+    const letter = q[0];
+
+    const params: AWS.DynamoDB.DocumentClient.QueryInput = {
+      ExpressionAttributeNames: {
+        '#PK': 'partitionKey',
+        '#SK': 'sortKey',
+      },
+      ExpressionAttributeValues: {
+        ':PK': `LETTER#${letter}`,
+        ':SK': q,
+      },
+      KeyConditionExpression: '#PK = :PK AND begins_with(#SK, :SK)',
+      TableName: SENTENCE_TABLE_NAME as string,
+      ReturnConsumedCapacity: 'TOTAL',
+      ProjectionExpression: 'sortKey',
+      Limit: 5,
+    };
+
+    const scanResult = await dynamodb.query(params).promise();
+    console.log(scanResult);
+
+    const words = scanResult.Items?.map((e) => e.sortKey);
+
+    return {
+      body: JSON.stringify({ words }),
+      headers: {
+        'access-control-allow-origin': '*',
+        'cache-control': 'no-store',
+      },
+      statusCode: 200,
+    };
+  }
 
   if (routeKey === routes.getSentence) {
     const { word } = queryStringParameters || {};
