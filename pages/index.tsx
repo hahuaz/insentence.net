@@ -26,7 +26,7 @@ const Home: NextPage = () => {
   const [isCreateSuccess, setIsCreateSuccess] = useState<boolean | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [createdLink, setCreatedLink] = useState('');
-  const sentencesInitial = Array.from(Array(10).keys()).map((key) => {
+  const sentencesInitial = Array.from(Array(6).keys()).map((key) => {
     return {
       sentence: '',
       styledSentence: '',
@@ -159,30 +159,30 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className=" ml-4 mt-4">
-        <div className="flex flex-col gap-4 ">
+      <div className=' ml-4 mt-4'>
+        <div className='flex flex-col gap-4 '>
           <div>
-            <label htmlFor="word">WORD:</label> <br></br>
+            <label htmlFor='word'>WORD:</label> <br></br>
             <input
-              type="text"
-              name="word"
-              id="word"
-              className="border pl-2 text-black"
+              type='text'
+              name='word'
+              id='word'
+              className='border pl-2 text-black'
               onChange={handleWordChange}
               value={word}
             />
           </div>
           <div className={`space-y-2 ${styles.bold_underline}`}>
-            <label htmlFor="sentences">SENTENCES:</label>
+            <label htmlFor='sentences'>SENTENCES:</label>
             {sentences.map(({ sentence, styledSentence }, i) => {
               return (
                 <div key={i} onKeyDown={handleKeydown}>
-                  <div className="flex gap-2">
-                    <label>{i}.</label>
+                  <div className='flex flex-row gap-2'>
+                    <label className='flex-shrink-0'>{i}.</label>
                     <textarea
                       cols={100}
-                      rows={2}
-                      className="border pl-2 text-black"
+                      rows={4}
+                      className='border pl-2 text-black leading-5  flex-1'
                       data-sentence-index={i}
                       onChange={(e) => handleSentenceChange(i, e)}
                       value={sentence}
@@ -190,6 +190,7 @@ const Home: NextPage = () => {
 
                     <div
                       dangerouslySetInnerHTML={{ __html: styledSentence }}
+                      className='flex-1'
                     ></div>
                   </div>
                 </div>
@@ -198,7 +199,7 @@ const Home: NextPage = () => {
           </div>
 
           <div>
-            <div className="text-red-600 h-6">
+            <div className='text-red-600 h-6'>
               {errorMessage && errorMessage}
             </div>
             <button
@@ -212,14 +213,14 @@ const Home: NextPage = () => {
             </button>
 
             {isCreateSuccess === true && (
-              <span className="text-green-600">created!</span>
+              <span className='text-green-600'>created!</span>
             )}
             {isCreateSuccess === false && (
-              <span className="text-red-600">failed!</span>
+              <span className='text-red-600'>failed!</span>
             )}
             <p>
               {createdLink && (
-                <a href={createdLink} target="_blank" className="text-blue-400">
+                <a href={createdLink} target='_blank' className='text-blue-400'>
                   LINK
                 </a>
               )}
