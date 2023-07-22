@@ -1,4 +1,4 @@
-# Architecture Diagram
+# System Design Diagram
 ![Alt text](assets/insentence-system-design-diagram.svg)
 ### TODOs before deployment
 
