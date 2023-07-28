@@ -4,4 +4,5 @@ module.exports = {
   outDir: "dist",
   changefreq: "monthly",
   autoLastmod: false,
+  sitemapSize: 500,
 };
