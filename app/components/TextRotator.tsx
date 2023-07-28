@@ -1,25 +1,30 @@
-import React, { useEffect } from 'react';
-import classNames from 'classnames';
+"use client";
+
+import React, { useEffect } from "react";
+import classNames from "classnames";
 
 function animateLetterOut(cw, i) {
   setTimeout(function () {
-    cw[i].className = 'letter out ';
+    cw[i].className = "letter out ";
   }, i * 80);
 }
 
 function animateLetterIn(nw, i) {
-  setTimeout(function () {
-    nw[i].className = 'letter in';
-  }, 340 + i * 80);
+  setTimeout(
+    function () {
+      nw[i].className = "letter in";
+    },
+    340 + i * 80
+  );
 }
 
 const TextRotator = () => {
   useEffect(() => {
-    const WORDS = document.querySelectorAll('.word');
+    const WORDS = document.querySelectorAll(".word");
 
     const lettersPerWord: Array<any> = [];
     WORDS.forEach((word) => {
-      const letters = word.querySelectorAll('.letter');
+      const letters = word.querySelectorAll(".letter");
       lettersPerWord.push(letters);
     });
     // console.log('lettersPerWord', lettersPerWord);
@@ -37,7 +42,7 @@ const TextRotator = () => {
       }
 
       for (let i = 0; i < nw.length; i++) {
-        nw[i].className = 'letter behind';
+        nw[i].className = "letter behind";
         nw[0].parentElement.style.opacity = 1;
         animateLetterIn(nw, i);
       }
@@ -54,7 +59,7 @@ const TextRotator = () => {
     };
   });
 
-  const words = ['free.', 'effective.', 'accessible.'];
+  const words = ["free.", "effective.", "accessible."];
   const splittedWords: Array<any> = [];
 
   // split letters
@@ -73,8 +78,8 @@ const TextRotator = () => {
     const word = (
       <span
         key={wordIndex}
-        className={classNames('word opacity-0 absolute font-bold  pl-1 ', {
-          ['!opacity-100']: wordIndex === 0,
+        className={classNames("word opacity-0 absolute font-bold  pl-1 ", {
+          ["!opacity-100"]: wordIndex === 0,
 
           // ['text-blue-bold']: wordIndex === 0,
           // ['text-yellow-bold']: wordIndex === 1,

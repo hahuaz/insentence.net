@@ -1,14 +1,9 @@
-import { useEffect } from 'react';
-import type { NextPage } from 'next';
-import Link from 'next/link';
-import Head from 'next/head';
+import { useEffect } from "react";
+import type { NextPage } from "next";
+import Link from "next/link";
+import Head from "next/head";
 
-import dynamic from 'next/dynamic';
-
-const TextRotatorWithNoSSR = dynamic(
-  () => import('../components/TextRotator'),
-  { ssr: false }
-);
+import TextRotator from "../components/TextRotator";
 
 const Home: NextPage = () => {
   return (
@@ -26,8 +21,8 @@ const Home: NextPage = () => {
           <h1 className="text-4xl ">
             <span className="text-black font-display font-medium">
               insentence.net
-            </span>{' '}
-            <span className="text-cblue">/</span>{' '}
+            </span>{" "}
+            <span className="text-cblue">/</span>{" "}
             <span className="font-serif italic font-light text-2xl text-cgray ">
               Improve Your English!
             </span>
@@ -42,7 +37,7 @@ const Home: NextPage = () => {
               Each word and sentence is accompanied by clear pronunciation.
             </li>
             <li>
-              <TextRotatorWithNoSSR />
+              <TextRotator />
             </li>
           </ul>
         </div>

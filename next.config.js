@@ -1,18 +1,21 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  reactStrictMode: true,
-  async redirects() {
-    return [
-      {
-        source: '/letter',
-        destination: '/letter/a',
-        permanent: false,
-      },
-      {
-        source: '/sentence',
-        destination: '/sentence/lost',
-        permanent: false,
-      },
-    ];
-  },
+const nextConfig = {
+  // webpack: (
+  //   config,
+  //   { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
+  // ) => {
+  //   config.module.rules.push({
+  //     test: /\.svg$/,
+  //     use: ['@svgr/webpack'],
+  //   });
+  //   // Important: return the modified config
+  //   return config;
+  // },
+
+  distDir: "dist",
+
+  // static site generation
+  output: "export",
 };
+
+module.exports = nextConfig;

@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
 function Footer() {
   return (
-    <footer className="mx-auto text-sm my-4">
+    <div className="max-w-screen-md mx-auto text-sm my-4 text-center">
       <p>
-        2022 ©{' '}
+        2022 ©{" "}
         <span className="underline underline-offset-2">
           work.hahuaz@gmail.com
         </span>
       </p>
-    </footer>
+    </div>
   );
 }
 
