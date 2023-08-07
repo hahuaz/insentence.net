@@ -24,13 +24,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.png" />
       </head>
       <body className="text-cblack_light text-sans min-h-screen flex flex-col justify-between ">
-        <header>
-          <Navbar />
-        </header>
+        <Navbar />
         {children}
-        <footer>
-          <Footer />
-        </footer>
+        <Footer />
       </body>
     </html>
   );

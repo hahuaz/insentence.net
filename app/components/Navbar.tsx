@@ -45,110 +45,117 @@ function Navbar() {
     };
   }, [query]);
   return (
-    <div className="pt-5 mb-5 sticky top-0 z-50 bg-white">
-      <div
-        className="max-w-screen-md mx-auto rounded-lg px-3 py-4 bg-zinc-100   "
-        style={{ boxShadow: "rgb(0 0 0 / 30%) 0px 0px 30px -1px" }}
-      >
-        <div className="flex justify-between items-center">
-          <div>
-            <Link href={"/"}>
-              <img width={108} height={32} src="/logo.png" alt="website logo" />
-            </Link>
-          </div>
-          <div className="relative">
-            <div
-              className={cs(
-                "flex items-center h-10 rounded-xl bg-white pl-2 border-2 border-transparent ",
-                {
-                  ["border-black"]: isFocused,
-                }
-              )}
-              style={{
-                boxShadow:
-                  "rgb(65 65 65 / 12%) 0px 3px 10px 1px, rgb(65 65 65 / 12%) 0px 3px 10px 1px",
-              }}
-            >
-              <span
-                className={cs("material-symbols-outlined ", {
-                  ["text-black"]: isFocused,
-                  ["text-stone-500"]: !isFocused,
-                })}
-              >
-                search
-              </span>
-              <input
-                type="text"
-                name="word"
-                id="search-word"
-                placeholder="Search word..."
-                maxLength={25}
-                onChange={(e) => setQuery(e.target.value.toLowerCase())}
-                value={query}
-                className="pl-2 focus:border-none focus:outline-none w-60 "
-                onFocus={() => setIsFocused(true)}
-              />
+    <header>
+      <div className="pt-5 mb-5 sticky top-0 z-50 bg-white">
+        <div
+          className="max-w-screen-md mx-auto rounded-lg px-3 py-4 bg-zinc-100   "
+          style={{ boxShadow: "rgb(0 0 0 / 30%) 0px 0px 30px -1px" }}
+        >
+          <div className="flex justify-between items-center">
+            <div>
+              <Link href={"/"}>
+                <img
+                  width={108}
+                  height={32}
+                  src="/logo.png"
+                  alt="website logo"
+                />
+              </Link>
             </div>
-            {isFocused && (
-              <OutsideClickHandler
-                onOutsideClick={(e) => {
-                  setIsFocused(false);
+            <div className="relative">
+              <div
+                className={cs(
+                  "flex items-center h-10 rounded-xl bg-white pl-2 border-2 border-transparent ",
+                  {
+                    ["border-black"]: isFocused,
+                  }
+                )}
+                style={{
+                  boxShadow:
+                    "rgb(65 65 65 / 12%) 0px 3px 10px 1px, rgb(65 65 65 / 12%) 0px 3px 10px 1px",
                 }}
               >
-                <div className="search-results absolute bg-white left-0 right-0 shadow-neutral-400 shadow-md rounded-md">
-                  {isSearching && (
-                    <div className="flex py-4 justify-center">
-                      <BeatLoader
-                        color={"#22c55e"}
-                        loading={true}
-                        // cssOverride={override}
-                        size={23}
-                        aria-label="Loading Spinner"
-                        data-testid="loader"
-                      />
-                    </div>
-                  )}
-                  {!isSearching && searchResults.length > 0 && (
-                    <div className="flex flex-col gap-4 py-4">
-                      {searchResults.map((result, i) => (
-                        <span key={i} className=" px-4 inline-block">
-                          <Link
-                            href={`/sentence/${result}`}
-                            className=" text-blue-500 hover:underline cursor-pointer"
-                            onClick={() => setIsFocused(false)}
-                            prefetch={false} // prevent throttle errors on lambda@edge
-                          >
-                            {result}
-                          </Link>
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </OutsideClickHandler>
-            )}
-          </div>
+                <span
+                  className={cs("material-symbols-outlined ", {
+                    ["text-black"]: isFocused,
+                    ["text-stone-500"]: !isFocused,
+                  })}
+                >
+                  search
+                </span>
+                <input
+                  type="text"
+                  name="word"
+                  id="search-word"
+                  placeholder="Search word..."
+                  maxLength={25}
+                  onChange={(e) => setQuery(e.target.value.toLowerCase())}
+                  value={query}
+                  className="pl-2 focus:border-none focus:outline-none w-60 "
+                  onFocus={() => setIsFocused(true)}
+                />
+              </div>
+              {isFocused && (
+                <OutsideClickHandler
+                  onOutsideClick={(e) => {
+                    setIsFocused(false);
+                  }}
+                >
+                  <div className="search-results absolute bg-white left-0 right-0 shadow-neutral-400 shadow-md rounded-md">
+                    {isSearching && (
+                      <div className="flex py-4 justify-center">
+                        <BeatLoader
+                          color={"#22c55e"}
+                          loading={true}
+                          // cssOverride={override}
+                          size={23}
+                          aria-label="Loading Spinner"
+                          data-testid="loader"
+                        />
+                      </div>
+                    )}
+                    {!isSearching && searchResults.length > 0 && (
+                      <div className="flex flex-col gap-4 py-4">
+                        {searchResults.map((result, i) => (
+                          <span key={i} className=" px-4 inline-block">
+                            <Link
+                              href={`/sentence/${result}`}
+                              className=" text-blue-500 hover:underline cursor-pointer"
+                              onClick={() => setIsFocused(false)}
+                              prefetch={false} // prevent throttle errors on lambda@edge
+                            >
+                              {result}
+                            </Link>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </OutsideClickHandler>
+              )}
+            </div>
 
-          <div>
-            <ul className="flex text-sm font-display font-semibold  ">
-              <Link
-                href="/letter/a"
-                className="py-1.5 px-3.5 rounded-2xl hover:bg-zinc-300 "
-                prefetch={false} // prevent throttle errors on lambda@edge
-              >
-                Letters
-              </Link>
-              {/* TODO implement random */}
-              {/* <Link href="/">
+            <div>
+              <ul className="flex text-sm font-display font-semibold  ">
+                <Link
+                  href="/letter/a"
+                  className="py-1.5 px-3.5 rounded-2xl hover:bg-zinc-300 "
+                  prefetch={false} // prevent throttle errors on lambda@edge
+                >
+                  Letters
+                </Link>
+                {/* TODO implement random */}
+                {/* <Link href="/">
                 <a className="py-1.5 px-3.5 rounded-3xl hover:bg-zinc-300">
                   Random
                 </a>
               </Link> */}
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 
